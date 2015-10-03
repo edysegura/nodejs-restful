@@ -4,20 +4,15 @@ var bodyParser = require('body-parser');
 
 // Express configuration
 var app = express();
+app.use(bodyParser.json());
 
 //welcome
 app.get('/', function(req, res) {
-    res.send('Hi there!');
+    res.send('TODO List REST API');
 });
 
-app.get('/api/tasks', function(req, res) {
-    var task = {
-        id: 1,
-        done: false,
-        description: 'Learn NodeJS'
-    };
-    res.json(task);
-});
+// Task API
+app.use('/api/tasks', require('./app/taskApi'));
 
 var server = app.listen(8080, function() {
     console.log("Server running at http://localhost:8080");
