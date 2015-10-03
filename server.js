@@ -5,10 +5,11 @@ var bodyParser = require('body-parser');
 // Express configuration
 var app = express();
 app.use(bodyParser.json());
+app.use(express.static('public'));
 
 //welcome
 app.get('/', function(req, res) {
-    res.send('TODO List REST API');
+    res.redirect('./index.html');
 });
 
 // Task API

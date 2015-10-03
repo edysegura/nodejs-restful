@@ -1,0 +1,164 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "0.0.1",
+        "title": "Todo List API",
+        "description": "This document describes the Todo List API"
+    },
+    "host": "localhost:8080",
+    "tags": [
+        {
+            "name": "Task",
+            "description": "Everything about tasks"
+        }
+    ],
+    "schemes": [
+        "http"
+    ],
+    "basePath": "/api",
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/tasks": {
+            "get": {
+                "tags": [
+                    "Task"
+                ],
+                "summary": "List all tasks",
+                "description": "Gets `Task` objects.\n",
+                "responses": {
+                    "200": {
+                        "description": "List all tasks",
+                        "schema": {
+                            "title": "Tasks",
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Task"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Task"
+                ],
+                "summary": "Create a new task",
+                "parameters": [
+                    {
+                        "name": "task",
+                        "in": "body",
+                        "description": "Create a task",
+                        "schema": {
+                            "$ref": "#/definitions/Task"
+                        },
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Task added"
+                    }
+                }
+            }
+        },
+        "/tasks/{id}": {
+            "get": {
+                "tags": [
+                    "Task"
+                ],
+                "summary": "Get a specific task",
+                "description": "Gets `Task` objects.\n",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "type": "string",
+                        "description": "ID of the task",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Task",
+                        "schema": {
+                            "title": "Task",
+                            "type": "object",
+                            "items": {
+                                "$ref": "#/definitions/Task"
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Task"
+                ],
+                "summary": "Update a specific task",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "type": "string",
+                        "description": "ID of the task",
+                        "required": true
+                    },
+                    {
+                        "name": "task",
+                        "in": "body",
+                        "description": "Task with the updated information",
+                        "schema": {
+                            "$ref": "#/definitions/Task"
+                        },
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Save a task"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Task"
+                ],
+                "summary": "Delete a specific task",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "type": "string",
+                        "description": "ID of the task",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No response received"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Task": {
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "done": {
+                    "type": "boolean"
+                },
+                "description": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
