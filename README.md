@@ -1,4 +1,4 @@
-# NodeJS RESTful
+# Node.js RESTful
 RESTful API with NodeJS
 
 ## How to start
