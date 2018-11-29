@@ -1,57 +1,55 @@
 // Dependencies
-var express = require('express')
-var router = express.Router()
+const express = require('express')
+const router = express.Router()
 
-var db = {},
-  sequence = 0
+let db = {}
+let sequence = 0
 
-var notFound = function(res) {
-  res.status(404).send('Not found!')
+const notFound = response => {
+  response.status(404).send('Not found!')
 }
 
-router.get('/', function(req, res) {
-  res.json(db)
+router.get('/', (request, response) => {
+  response.json(db)
 })
 
-router.get('/:id', function(req, res) {
-  var task = db[req.params.id]
-  if (task) {
-    res.json(task)
-  } else {
-    notFound(res)
-  }
+router.get('/:id', (request, response) => {
+  const task = db[request.params.id]
+  task
+    ? response.json(task)
+    : notFound(response)
 })
 
-router.post('/', function(req, res) {
-  var newTask = {
-    id: ++sequence,
-    done: req.body.done || false,
-    description: req.body.description
+router.post('/', (request, response) => {
+  const newTask = {
+    'id': ++sequence,
+    'done': request.body.done || false,
+    'description': request.body.description
   }
 
   db[newTask.id] = newTask
 
-  res.status(201).json(newTask)
+  response.status(201).json(newTask)
 })
 
-router.put('/:id', function(req, res) {
-  var task = db[req.params.id]
+router.put('/:id', (request, response) => {
+  const task = db[request.params.id]
   if (task) {
-    task.done = req.body.done != null ? req.body.done : false
-    task.description = req.body.description || task.description
-    res.json(task)
+    task.done = request.body.done != null ? request.body.done : false
+    task.description = request.body.description || task.description
+    response.json(task)
   } else {
-    notFound(res)
+    notFound(response)
   }
 })
 
-router.delete('/:id', function(req, res) {
-  var task = db[req.params.id]
+router.delete('/:id', (request, response) => {
+  var task = db[request.params.id]
   if (task) {
-    delete db[req.params.id]
-    res.send('Task deleted')
+    delete db[request.params.id]
+    response.send('Task deleted')
   } else {
-    notFound(res)
+    notFound(response)
   }
 })
 
