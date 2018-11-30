@@ -4,7 +4,7 @@
   "description": "TODO List app with Node.js",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "newman run test/Tasks.postman_collection.json"
   },
   "keywords": [
     "Node.js",
