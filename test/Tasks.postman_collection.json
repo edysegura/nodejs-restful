@@ -1,0 +1,62 @@
+{
+	"info": {
+		"_postman_id": "ff78ee98-9759-4f93-a2bd-aeb1afccd49b",
+		"name": "Tasks",
+		"description": "Collection for a RESTful Todo List APIs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Add Item",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4e30370f-fd3c-4327-b0d0-6d9668c44e98",
+						"exec": [
+							"pm.test(\"Status code is 201\", () => {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.test(\"Id and description has been returned\", () => {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(!!jsonData.id).to.be.true;",
+							"    pm.expect(jsonData.description).to.eql('Learning RxJS');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"done\": false,\r\n  \"description\": \"Learning RxJS\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/tasks",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"tasks"
+					]
+				},
+				"description": "Adding item to the list"
+			},
+			"response": []
+		}
+	]
+}
