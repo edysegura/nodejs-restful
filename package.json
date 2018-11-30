@@ -18,6 +18,7 @@
     "express": "^4.13.3"
   },
   "devDependencies": {
-    "newman": "^4.2.2"
+    "newman": "^4.2.2",
+    "newman-reporter-html": "^1.0.2"
   }
 }
