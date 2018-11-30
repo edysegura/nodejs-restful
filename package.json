@@ -4,13 +4,14 @@
   "description": "TODO List app with Node.js",
   "main": "server.js",
   "scripts": {
-    "pretest": "",
-    "test": "newman run test/Tasks.postman_collection.json -r cli,html,json"
+    "pretest": "shx rm -rf newman",
+    "test": "newman run test/Tasks.postman_collection.json -r cli,html,json,junit"
   },
   "keywords": [
     "Node.js",
     "REST",
-    "API"
+    "API",
+    "Postman"
   ],
   "author": "Edy Segura",
   "license": "MIT",
