@@ -4,6 +4,7 @@
   "description": "TODO List app with Node.js",
   "main": "server.js",
   "scripts": {
+    "pretest": "",
     "test": "newman run test/Tasks.postman_collection.json -r cli,html,json"
   },
   "keywords": [
@@ -19,6 +20,7 @@
   },
   "devDependencies": {
     "newman": "^4.2.2",
-    "newman-reporter-html": "^1.0.2"
+    "newman-reporter-html": "^1.0.2",
+    "shx": "^0.3.2"
   }
 }
