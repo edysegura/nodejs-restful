@@ -4,7 +4,7 @@
   "description": "TODO List app with Node.js",
   "main": "server.js",
   "scripts": {
-    "test": "newman run test/Tasks.postman_collection.json"
+    "test": "newman run test/Tasks.postman_collection.json -r cli,html,json"
   },
   "keywords": [
     "Node.js",
