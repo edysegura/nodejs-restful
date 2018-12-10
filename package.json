@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "pretest": "shx rm -rf newman",
-    "test": "newman run test/Tasks.postman_collection.json -r cli,html,json,junit"
+    "test": "newman run test/Tasks.postman_collection.json --reporters cli,html,json,junit --reporter-html-template templates/htmlreqres.hbs"
   },
   "keywords": [
     "Node.js",
