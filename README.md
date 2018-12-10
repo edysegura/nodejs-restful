@@ -5,7 +5,7 @@ Postman collections with newman
 
 ## How to start
 
-First you need to have Node.js installed in your machine than run the commands below:
+First you need to have Node.js installed in your machine and than run the commands below:
 
 - `npm install`
 
@@ -18,3 +18,4 @@ First you need to have Node.js installed in your machine than run the commands b
 ## References
 
 - [Postman for QA Teams](https://www.getpostman.com/qa)
+- [Awesome newman HTML template](https://github.com/MarcosEllys/awesome-newman-html-template)
