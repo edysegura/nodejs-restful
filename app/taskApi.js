@@ -9,7 +9,9 @@ const notFound = response => {
 }
 
 router.get('/', (request, response) => {
-  response.json(db)
+  Object.keys(db).length
+    ? response.json(db)
+    : response.status(204).send('')
 })
 
 router.get('/:id', (request, response) => {
