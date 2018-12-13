@@ -2,8 +2,8 @@
   "name": "todo-nodejs-app",
   "version": "1.0.0",
   "description": "TODO List app with Node.js",
-  "main": "server.js",
   "scripts": {
+    "start": "node server",
     "pretest": "shx rm -rf newman",
     "test": "newman run test/Tasks.postman_collection.json --reporters cli,html,json,junit --reporter-html-template templates/htmlreqres.hbs"
   },

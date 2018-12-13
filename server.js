@@ -1,5 +1,6 @@
 const express = require('express')
 const bodyParser = require('body-parser')
+const port = process.env.PORT || 8080
 
 const app = express()
 app.use(bodyParser.json())
@@ -11,6 +12,6 @@ app.get('/', (request, response) => {
 
 app.use('/api/tasks', require('./app/taskApi'))
 
-app.listen(8080, () => {
-  console.log('Server running at http://localhost:8080')
+app.listen(port, () => {
+  console.log(`Server running at http://localhost:${port}`)
 })
