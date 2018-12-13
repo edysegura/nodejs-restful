@@ -19,9 +19,9 @@
 							"});",
 							"",
 							"pm.test(\"Id and description has been returned\", () => {",
-							"    var jsonData = pm.response.json();",
+							"    const jsonData = pm.response.json();",
 							"    pm.expect(!!jsonData.id).to.be.true;",
-							"    pm.expect(jsonData.description).to.eql('Learning RxJS');",
+							"    pm.expect(jsonData.description).to.equal('Learning RxJS');",
 							"});"
 						],
 						"type": "text/javascript"
@@ -55,6 +55,267 @@
 					]
 				},
 				"description": "Adding item to the list"
+			},
+			"response": []
+		},
+		{
+			"name": "Check Item Created",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4e30370f-fd3c-4327-b0d0-6d9668c44e98",
+						"exec": [
+							"pm.test(\"Status code is 200\", () => {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Should return at least one record\", () => {",
+							"    const jsonData = pm.response.json();",
+							"    const keys = Object.keys(jsonData);",
+							"    pm.expect(keys.length).to.be.above(0);",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"done\": false,\r\n  \"description\": \"Learning RxJS\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/tasks",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"tasks"
+					]
+				},
+				"description": "This check whether item was created"
+			},
+			"response": []
+		},
+		{
+			"name": "By Id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d835b8bf-f4f0-4772-88a6-9ce1bfd5c8f6",
+						"exec": [
+							"pm.test(\"Status code is 200\", () => {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"The responde should have id, done and description property\", () => {",
+							"    const jsonData = pm.response.json();",
+							"    pm.expect(jsonData.hasOwnProperty('id')).to.be.true;",
+							"    pm.expect(jsonData.hasOwnProperty('done')).to.be.true;",
+							"    pm.expect(jsonData.hasOwnProperty('description')).to.be.true;",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/tasks/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"tasks",
+						"1"
+					]
+				},
+				"description": "Get an item by its id"
+			},
+			"response": []
+		},
+		{
+			"name": "Change by Id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d835b8bf-f4f0-4772-88a6-9ce1bfd5c8f6",
+						"exec": [
+							"pm.test(\"Status code is 200\", () => {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"The description should be updated\", () => {",
+							"    const jsonData = pm.response.json();",
+							"    pm.expect(jsonData.hasOwnProperty('id')).to.be.true;",
+							"    pm.expect(jsonData.hasOwnProperty('done')).to.be.true;",
+							"    pm.expect(jsonData.description).to.equal('Learn JavaScript');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"description\": \"Learn JavaScript\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/tasks/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"tasks",
+						"1"
+					]
+				},
+				"description": "Change an item by its id"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Item",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d835b8bf-f4f0-4772-88a6-9ce1bfd5c8f6",
+						"exec": [
+							"pm.test(\"Status code is 200\", () => {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Should return task deleted in response body\", () => {",
+							"    pm.expect(pm.response.text()).to.include('Task deleted');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"description\": \"Learn JavaScript\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/tasks/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"tasks",
+						"1"
+					]
+				},
+				"description": "Delete an item by its id"
+			},
+			"response": []
+		},
+		{
+			"name": "Not found",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d835b8bf-f4f0-4772-88a6-9ce1bfd5c8f6",
+						"exec": [
+							"pm.test(\"Status code is 404\", () => {",
+							"    pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Should return 'not found' in response body\", () => {",
+							"    pm.expect(pm.response.text()).to.include('Not found!');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"description\": \"Learn JavaScript\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/tasks/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"tasks",
+						"1"
+					]
+				},
+				"description": "Delete an item by its id"
 			},
 			"response": []
 		}
