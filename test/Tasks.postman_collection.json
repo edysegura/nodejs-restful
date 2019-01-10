@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "ff78ee98-9759-4f93-a2bd-aeb1afccd49b",
+		"_postman_id": "4ae70035-ef65-4387-aa32-49f2c031478d",
 		"name": "Tasks",
 		"description": "Collection for a RESTful Todo List APIs",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -97,7 +97,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"done\": false,\r\n  \"description\": \"Learning RxJS\"\r\n}"
+					"raw": ""
 				},
 				"url": {
 					"raw": "http://localhost:8080/api/tasks",
@@ -249,7 +249,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"description\": \"Learn JavaScript\"\r\n}"
+					"raw": ""
 				},
 				"url": {
 					"raw": "http://localhost:8080/api/tasks/1",
@@ -300,7 +300,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"description\": \"Learn JavaScript\"\r\n}"
+					"raw": ""
 				},
 				"url": {
 					"raw": "http://localhost:8080/api/tasks/1",
