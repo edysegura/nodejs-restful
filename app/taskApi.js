@@ -8,9 +8,14 @@ const notFound = response => {
   response.status(404).send('Not found!')
 }
 
+
 router.get('/', (request, response) => {
-  Object.keys(db).length
-    ? response.json(db)
+  const toArray = key => {
+    return db[key]
+  }
+  const tasks = Object.keys(db).map(toArray)
+  tasks.length
+    ? response.json(tasks)
     : response.status(204).send('')
 })
 

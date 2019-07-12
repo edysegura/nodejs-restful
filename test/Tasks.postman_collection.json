@@ -59,7 +59,7 @@
 			"response": []
 		},
 		{
-			"name": "Check Item Created",
+			"name": "Items",
 			"event": [
 				{
 					"listen": "test",
@@ -72,8 +72,7 @@
 							"",
 							"pm.test(\"Should return at least one record\", () => {",
 							"    const jsonData = pm.response.json();",
-							"    const keys = Object.keys(jsonData);",
-							"    pm.expect(keys.length).to.be.above(0);",
+							"    pm.expect(jsonData.length).to.be.above(0);",
 							"});",
 							"",
 							""
@@ -142,10 +141,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "http://localhost:8080/api/tasks/1",
 					"protocol": "http",
