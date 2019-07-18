@@ -4,6 +4,7 @@
   "description": "TODO List app with Node.js",
   "scripts": {
     "start": "node server",
+    "start:dev": "nodemon server",
     "pretest": "shx rm -rf newman",
     "test": "newman run test/Tasks.postman_collection.json --reporters cli,html,json,junit --reporter-html-template templates/htmlreqres.hbs"
   },
@@ -22,6 +23,7 @@
   "devDependencies": {
     "newman": "^4.5.1",
     "newman-reporter-html": "^1.0.3",
+    "nodemon": "^1.19.1",
     "shx": "^0.3.2"
   }
 }
