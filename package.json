@@ -21,7 +21,7 @@
     "express": "^4.13.3"
   },
   "devDependencies": {
-    "newman": "^4.5.1",
+    "newman": "^4.5.4",
     "newman-reporter-html": "^1.0.3",
     "nodemon": "^1.19.1",
     "shx": "^0.3.2"
