@@ -16,7 +16,7 @@ router.get('/', (request, response) => {
   const tasks = Object.keys(db).map(toArray)
   tasks.length
     ? response.json(tasks)
-    : response.status(204).send('')
+    : response.status(204).end('')
 })
 
 router.get('/:id', (request, response) => {
