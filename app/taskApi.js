@@ -1,45 +1,40 @@
 const express = require('express')
 const router = express.Router()
 
-let db = {}
-let sequence = 0
+const TaskService = require('./TaskService')
 
 const notFound = response => {
   response.status(404).send('Not found!')
 }
 
-
-router.get('/', (request, response) => {
-  const toArray = key => {
-    return db[key]
-  }
-  const tasks = Object.keys(db).map(toArray)
+router.get('/', async (request, response) => {
+  const tasks = await TaskService.getAll()
   tasks.length
     ? response.json(tasks)
     : response.status(204).end('')
 })
 
-router.get('/:id', (request, response) => {
-  const task = db[request.params.id]
+router.get('/:id', async (request, response) => {
+  const taskId = request.params.id
+  const task = await TaskService.getById(taskId)
   task
     ? response.json(task)
     : notFound(response)
 })
 
-router.post('/', (request, response) => {
+router.post('/', async (request, response) => {
   const newTask = {
-    'id': ++sequence,
     'done': request.body.done || false,
     'description': request.body.description
   }
 
-  db[newTask.id] = newTask
+  const savedTask = await TaskService.save(newTask)
 
-  response.status(201).json(newTask)
+  response.status(201).json(savedTask)
 })
 
-router.put('/:id', (request, response) => {
-  const task = db[request.params.id]
+router.patch('/:id', async (request, response) => {
+  const task = await TaskService.getById(request.params.id)
   if (task) {
     task.done = request.body.done != null ? request.body.done : false
     task.description = request.body.description || task.description
@@ -49,11 +44,12 @@ router.put('/:id', (request, response) => {
   }
 })
 
-router.delete('/:id', (request, response) => {
-  var task = db[request.params.id]
-  if (task) {
-    delete db[request.params.id]
-    response.send('Task deleted')
+router.delete('/:id', async (request, response) => {
+  var isDeleted = await TaskService.delete(request.params.id)
+  if (isDeleted) {
+    response
+      .status(200)
+      .send('Task deleted')
   } else {
     notFound(response)
   }
