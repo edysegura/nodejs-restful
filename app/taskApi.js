@@ -45,7 +45,7 @@ router.patch('/:id', async (request, response) => {
 })
 
 router.delete('/:id', async (request, response) => {
-  var isDeleted = await TaskService.delete(request.params.id)
+  const isDeleted = await TaskService.delete(request.params.id)
   if (isDeleted) {
     response
       .status(200)
