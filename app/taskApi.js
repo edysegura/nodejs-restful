@@ -9,7 +9,7 @@ const notFound = response => {
 
 router.get('/', async (request, response) => {
   const tasks = await TaskService.getAll()
-  tasks.length
+  tasks && tasks.length
     ? response.json(tasks)
     : response.status(204).end('')
 })
@@ -23,36 +23,27 @@ router.get('/:id', async (request, response) => {
 })
 
 router.post('/', async (request, response) => {
-  const newTask = {
-    'done': request.body.done || false,
-    'description': request.body.description
-  }
-
-  const savedTask = await TaskService.save(newTask)
-
-  response.status(201).json(savedTask)
+  const task = await TaskService.add(request.body)
+  response
+    .status(201)
+    .json(task)
 })
 
 router.patch('/:id', async (request, response) => {
-  const task = await TaskService.getById(request.params.id)
-  if (task) {
-    task.done = request.body.done != null ? request.body.done : false
-    task.description = request.body.description || task.description
-    response.json(task)
-  } else {
-    notFound(response)
-  }
+  const updatedTask = await TaskService.update(
+    request.params.id,
+    request.body
+  );
+  updatedTask
+    ? response.json(updatedTask)
+    : notFound(response);
 })
 
 router.delete('/:id', async (request, response) => {
-  const isDeleted = await TaskService.delete(request.params.id)
-  if (isDeleted) {
-    response
-      .status(200)
-      .send('Task deleted')
-  } else {
-    notFound(response)
-  }
+  const isDeleted = await TaskService.delete(request.params.id);
+  isDeleted
+    ? response.end('Task deleted!')
+    : notFound(response)
 })
 
 module.exports = router
