@@ -1,17 +1,19 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-const port = process.env.PORT || 8080
+
+const HOST = process.env.HOST || 'localhost'
+const PORT = process.env.PORT || 8080
 
 const app = express()
 app.use(bodyParser.json())
 app.use(express.static('public'))
 
-app.get('/', (request, response) => {
+app.get('/', (_, response) => {
   response.redirect('./index.html')
 })
 
 app.use('/api/tasks', require('./app/taskApi'))
 
-app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`)
+app.listen(PORT, () => {
+  console.log(`Server running on http://${HOST}:${PORT}`)
 })
