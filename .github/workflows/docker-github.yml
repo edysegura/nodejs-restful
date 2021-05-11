@@ -19,5 +19,5 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
           registry: docker.pkg.github.com
-          repository: edysegura/node-restful
+          repository: edysegura/nodejs-restful/node-restful
           tag_with_ref: true
