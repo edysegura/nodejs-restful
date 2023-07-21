@@ -22,7 +22,7 @@
   "devDependencies": {
     "newman": "^4.5.7",
     "newman-reporter-html": "^1.0.5",
-    "nodemon": "^1.19.1",
+    "nodemon": "^3.0.1",
     "shx": "^0.3.2"
   }
 }
